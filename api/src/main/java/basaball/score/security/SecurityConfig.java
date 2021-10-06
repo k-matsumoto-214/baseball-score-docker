@@ -1,9 +1,7 @@
 package basaball.score.security;
 
-import static basaball.score.security.SecurityConstants.LOGIN_URL;
-import static basaball.score.security.SecurityConstants.SIGNUP_URL;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -19,6 +17,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
   @Autowired
   private LoginTeamService loginTeamService;
+
+  @Value("${LOGIN_URL}") 
+  private String LOGIN_URL;
+  
+  @Value("${SIGNUP_URL}") 
+  private String SIGNUP_URL;
 
   @Bean
   public BCryptPasswordEncoder bCryptPasswordEncoder() {

@@ -1,9 +1,5 @@
 package basaball.score.security;
 
-import static basaball.score.security.SecurityConstants.HEADER_STRING;
-import static basaball.score.security.SecurityConstants.SECRET;
-import static basaball.score.security.SecurityConstants.TOKEN_PREFIX;
-
 import io.jsonwebtoken.Jwts;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,12 +7,24 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 public class JwtFilter extends BasicAuthenticationFilter {
+
+  @Value("${SECRET}") 
+  private String SECRET;
+  
+  @Value("${TOKEN_PREFIX}") 
+  private String TOKEN_PREFIX;
+
+  @Value("${HEADER_STRING") 
+  private String HEADER_STRING;
+  
   public JwtFilter(AuthenticationManager authenticationManager) {
     super(authenticationManager);
   }

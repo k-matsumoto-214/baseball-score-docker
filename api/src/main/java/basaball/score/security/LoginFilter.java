@@ -1,10 +1,5 @@
 package basaball.score.security;
 
-import static basaball.score.security.SecurityConstants.EXPIRATION_TIME;
-import static basaball.score.security.SecurityConstants.LOGIN_URL;
-import static basaball.score.security.SecurityConstants.SECRET;
-import static basaball.score.security.SecurityConstants.TOKEN_PREFIX;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -18,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -26,6 +22,19 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 public class LoginFilter extends UsernamePasswordAuthenticationFilter {
+
+  @Value("${EXPIRATION_TIME}")
+  private int EXPIRATION_TIME;
+  
+  @Value("${LOGIN_URL}") 
+  private String LOGIN_URL;
+  
+  @Value("${SECRET}") 
+  private String SECRET;
+  
+  @Value("${TOKEN_PREFIX}") 
+  private String TOKEN_PREFIX;
+
   private AuthenticationManager authenticationManager;
   public LoginFilter(AuthenticationManager authenticationManager) {
     this.authenticationManager = authenticationManager;

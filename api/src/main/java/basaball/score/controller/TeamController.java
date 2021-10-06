@@ -1,7 +1,5 @@
 package basaball.score.controller;
 
-import static basaball.score.security.SecurityConstants.SIGNUP_URL;
-
 import basaball.score.controller.exception.DataNotFoundException;
 import basaball.score.controller.exception.DeleteException;
 import basaball.score.controller.exception.DuplicateAccountIdException;
@@ -13,6 +11,7 @@ import basaball.score.security.LoginTeam;
 import basaball.score.service.TeamsService;
 import basaball.score.service.UtilService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,12 +27,15 @@ public class TeamController {
   @Autowired
   private TeamsService teamsService;
 
+  @Value("${SIGNUP_URL}") 
+  private String SIGNUP_URL;
+
   @GetMapping("/teams")
   public ResponseEntity<Object> fetchPlayers(@AuthenticationPrincipal LoginTeam team) throws DataNotFoundException {
     return utilService.responseFromObject(teamsService.findById(team.getId()));
   }
 
-  @PostMapping(SIGNUP_URL)
+  @PostMapping("/signup")
   public ResponseEntity<Object> registerPlayer(@RequestBody TeamForm form) throws RegistrationException, DuplicateAccountIdException {
     Team team = new Team();
     team.setAccountId(form.getAccountId());
