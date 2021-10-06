@@ -1,5 +1,5 @@
 FROM adoptopenjdk/openjdk15:jdk-15.0.2_7-centos
-COPY . .
+ADD . /api
 RUN yum install wget -y
 RUN wget -P /tmp https://services.gradle.org/distributions/gradle-7.1-bin.zip
 RUN yum install unzip -y
@@ -8,4 +8,4 @@ ENV GRADLE_HOME /opt/gradle/gradle-7.1
 ENV PATH ${PATH}:${GRADLE_HOME}/bin
 RUN gradle build -x test
 
-ENTRYPOINT ["/bin/sh", "-c", "while :; do sleep 10; done"]
+ENTRYPOINT ["Java” ”-jar api/score-api.jar"]

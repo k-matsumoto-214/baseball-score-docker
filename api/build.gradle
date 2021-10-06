@@ -4,7 +4,7 @@ plugins {
 	id 'java'
 }
 
-group = 'basaball'
+group = 'score-api'
 version = ''
 sourceCompatibility = '11'
 
