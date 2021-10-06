@@ -26,19 +26,13 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
   @Value("${EXPIRATION_TIME}")
   private int EXPIRATION_TIME;
   
-  @Value("${LOGIN_URL}") 
-  private String LOGIN_URL;
-  
   @Value("${SECRET}") 
   private String SECRET;
-  
-  @Value("${TOKEN_PREFIX}") 
-  private String TOKEN_PREFIX;
 
   private AuthenticationManager authenticationManager;
   public LoginFilter(AuthenticationManager authenticationManager) {
     this.authenticationManager = authenticationManager;
-    setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher(LOGIN_URL, "POST"));
+    setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("login", "POST"));
     setUsernameParameter("accountId");
     setPasswordParameter("password");
   }
@@ -72,7 +66,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
     JSONObject json = new JSONObject();
     try {
-      json.put("token", TOKEN_PREFIX + token);
+      json.put("token", "Bearer" + token);
     } catch (JSONException e) {
       e.printStackTrace();
     }
