@@ -8,4 +8,4 @@ ENV GRADLE_HOME /opt/gradle/gradle-7.1
 ENV PATH ${PATH}:${GRADLE_HOME}/bin
 RUN gradle build -x test
 
-ENTRYPOINT ["Java” ”-jar api/score-api.jar"]
+ENTRYPOINT ["Java”,”-jar api/score-api.jar"]

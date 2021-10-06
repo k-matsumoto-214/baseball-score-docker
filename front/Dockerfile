@@ -9,5 +9,6 @@ ADD . /front
 WORKDIR /front
 RUN npm install
 RUN npm run build
-ENTRYPOINT [ "npm" "run start" ]
+EXPOSE 3000
+ENTRYPOINT ["npm","run","start"]
 

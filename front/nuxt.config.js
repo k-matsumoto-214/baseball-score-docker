@@ -76,7 +76,7 @@ export default {
   proxy: {
     '/api/': {
       // ターゲット先のURLを指定
-      target: 'http://172.29.208.1:8081',
+      target: 'score-api:8080',
       pathRewrite: {'^/api/': '/'}
     }
   }
