@@ -7,8 +7,6 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,14 +14,11 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 
 public class JwtFilter extends BasicAuthenticationFilter {
 
-  @Value("${SECRET}") 
-  private String SECRET;
+  static final String SECRET = "score-default-test";
   
-  @Value("${TOKEN_PREFIX}") 
-  private String TOKEN_PREFIX;
+  static final String TOKEN_PREFIX = "Bearer";
 
-  @Value("${HEADER_STRING") 
-  private String HEADER_STRING;
+  static final String HEADER_STRING = "Authorization";
   
   public JwtFilter(AuthenticationManager authenticationManager) {
     super(authenticationManager);

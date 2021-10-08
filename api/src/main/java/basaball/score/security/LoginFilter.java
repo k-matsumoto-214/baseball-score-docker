@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -23,11 +22,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
-  @Value("${EXPIRATION_TIME}")
-  private int EXPIRATION_TIME;
+  static final int EXPIRATION_TIME = 18000000;
   
-  @Value("${SECRET}") 
-  private String SECRET;
+  static final String SECRET = "score-default-test";
 
   private AuthenticationManager authenticationManager;
   public LoginFilter(AuthenticationManager authenticationManager) {
