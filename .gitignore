@@ -132,3 +132,5 @@ sw.*
 
 #zipfile
 *.zip
+
+db/

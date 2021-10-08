@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS baseball-score;
-CREATE DATABASE baseball-score;
-USE baseball-score;
+DROP DATABASE IF EXISTS baseball_score;
+CREATE DATABASE baseball_score;
+USE baseball_score;
 DROP TABLE IF EXISTS test;
 
 CREATE TABLE test

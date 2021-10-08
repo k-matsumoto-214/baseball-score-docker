@@ -32,7 +32,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
   private AuthenticationManager authenticationManager;
   public LoginFilter(AuthenticationManager authenticationManager) {
     this.authenticationManager = authenticationManager;
-    setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("login", "POST"));
+    setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/login", "POST"));
     setUsernameParameter("accountId");
     setPasswordParameter("password");
   }
